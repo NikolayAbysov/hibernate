@@ -17,10 +17,15 @@ public class Main {
     private static final GenreService genreService = (GenreService) INJECTOR.getInstance(GenreService.class);
 
     public static void main(String[] args) {
-        Author author = new Author();
-        author.setName("Giovanni");
-        author.setSurname("Rodari");
-        authorService.add(author);
+        Author author1 = new Author();
+        author1.setName("Giovanni");
+        author1.setSurname("Rodari");
+        authorService.add(author1);
+
+        Author author2 = new Author();
+        author2.setName("Sun");
+        author2.setSurname("Tzu");
+        authorService.add(author2);
 
         Genre genre = new Genre();
         genre.setGenreName("Story");
@@ -28,8 +33,11 @@ public class Main {
 
         Book book = new Book();
         book.setName("Cipollino");
-        book.setAuthors(List.of(author));
+        book.setAuthors(List.of(author1, author2));
         book.setGenre(genre);
         bookService.add(book);
+        bookService.delete(book);
+
+        authorService.delete(author1);
     }
 }

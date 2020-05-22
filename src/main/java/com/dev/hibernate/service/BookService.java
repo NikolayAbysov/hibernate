@@ -8,5 +8,7 @@ public interface BookService {
 
     Book add(Book book);
 
+    boolean delete(Book book);
+
     List<Book> getAll();
 }

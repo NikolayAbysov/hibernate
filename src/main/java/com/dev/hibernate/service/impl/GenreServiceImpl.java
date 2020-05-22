@@ -18,6 +18,11 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
+    public boolean delete(Genre genre) {
+        return genreDao.delete(genre);
+    }
+
+    @Override
     public List<Genre> getAll() {
         return genreDao.getAll();
     }

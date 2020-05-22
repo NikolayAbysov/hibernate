@@ -8,5 +8,7 @@ public interface GenreDao {
 
     Genre add(Genre genre);
 
+    boolean delete(Genre genre);
+
     List<Genre> getAll();
 }

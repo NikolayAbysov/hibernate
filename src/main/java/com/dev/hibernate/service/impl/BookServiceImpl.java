@@ -19,6 +19,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public boolean delete(Book book) {
+        return bookDao.delete(book);
+    }
+
+    @Override
     public List<Book> getAll() {
         return bookDao.getAll();
     }

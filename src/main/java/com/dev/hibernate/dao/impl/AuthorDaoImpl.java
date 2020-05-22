@@ -8,6 +8,7 @@ import com.dev.hibernate.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
@@ -35,6 +36,22 @@ public class AuthorDaoImpl implements AuthorDao {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public boolean delete(Author author) {
+        Session session;
+        Transaction transaction;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.delete(author);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while deleting author. Stacktrace: "
+                    + e.getMessage());
         }
     }
 

@@ -1,5 +1,6 @@
 package com.dev.hibernate.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Book {
     private String name;
     @OneToOne
     private Genre genre;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.DETACH)
     private List<Author> authors;
 
     public Long getId() {

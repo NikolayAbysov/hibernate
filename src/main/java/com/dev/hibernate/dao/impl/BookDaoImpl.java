@@ -38,6 +38,22 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public boolean delete(Book book) {
+        Session session;
+        Transaction transaction;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.delete(book);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while deleting book. Stacktrace: "
+                    + e.getMessage());
+        }
+    }
+
+    @Override
     public List<Book> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             CriteriaQuery<Book> criteriaQuery = session.getCriteriaBuilder().createQuery(Book.class);

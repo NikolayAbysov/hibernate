@@ -18,6 +18,11 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public boolean delete(Author author) {
+        return authorDao.delete(author);
+    }
+
+    @Override
     public List<Author> getAll() {
         return authorDao.getAll();
     }

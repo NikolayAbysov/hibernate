@@ -8,5 +8,7 @@ public interface GenreService {
 
     Genre add(Genre genre);
 
+    boolean delete(Genre genre);
+
     List<Genre> getAll();
 }

@@ -39,6 +39,22 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
+    public boolean delete(Genre genre) {
+        Session session;
+        Transaction transaction;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.delete(genre);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while deleting genre. Stacktrace: "
+                    + e.getMessage());
+        }
+    }
+
+    @Override
     public List<Genre> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             CriteriaQuery<Genre> criteriaQuery = session.getCriteriaBuilder().createQuery(Genre.class);
